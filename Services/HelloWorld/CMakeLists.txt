@@ -1,4 +1,8 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.20)
+# TODO: Figure out why it will always put build files into "Debug" folders
+#       even when "Release" is specified. Current work around is to say
+#       cmake --build . --config Release
+#       Release is needed/expected with making a debian package
 
 # ----------------------------------------------------------------------------
 # Ensure proper build
@@ -30,7 +34,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/archive)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Enable unit tests
-enable_testing()
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    enable_testing()
+endif()
 
 # Enable CMake target folders view in IDEs
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -64,7 +70,9 @@ gtest_unittestList_Init()
 # ----------------------------------------------------------------------------
 # Add Subdirectories
 # ----------------------------------------------------------------------------
-add_subdirectory(UnitTests)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_subdirectory(UnitTests)
+endif()
 
 # ----------------------------------------------------------------------------
 # Add Executable
@@ -91,4 +99,15 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 # Now let's also install our targets
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_BINARY_DIR})
+# TODO: We might be able to use CPACK_INSTALL_CMAKE_PROJECTS to have one master CMake
+#       and then create separate packages for each subproject
+#       (https://cmake.org/cmake/help/book/mastering-cmake/chapter/Packaging%20With%20CPack.html)
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION /usr/bin)
+install(FILES ${PROJECT_NAME}.service DESTINATION /etc/systemd/system/)
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_FILE_NAME ${TARGET})
+set(CPACK_DEBIAN_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Kevin Murray Jr.")
+set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE armhf)
+set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Simple example of a package using CPack")
+include(CPack)
