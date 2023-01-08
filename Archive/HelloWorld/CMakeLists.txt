@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.14)
 # TODO: Figure out why it will always put build files into "Debug" folders
 #       even when "Release" is specified. Current work around is to say
 #       cmake --build . --config Release
@@ -111,3 +111,8 @@ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Kevin Murray Jr.")
 set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE armhf)
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Simple example of a package using CPack")
 include(CPack)
+
+add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND cpack --config CPackConfig.cmake
+)
