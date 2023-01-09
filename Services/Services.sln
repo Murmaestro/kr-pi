@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "BudgetWepApp", "BudgetWepApp\BudgetWepApp.njsproj", "{467409EA-A4E4-4C3B-A62A-D29D3E51AC3A}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HelloPython", "HelloPython\HelloPython.pyproj", "{8F0C9CF6-DDFF-4FB0-B30D-E94E63DB661A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{467409EA-A4E4-4C3B-A62A-D29D3E51AC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{467409EA-A4E4-4C3B-A62A-D29D3E51AC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{467409EA-A4E4-4C3B-A62A-D29D3E51AC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F0C9CF6-DDFF-4FB0-B30D-E94E63DB661A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F0C9CF6-DDFF-4FB0-B30D-E94E63DB661A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
