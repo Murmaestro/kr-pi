@@ -1,3 +1,4 @@
+#!/usr/bin/python
 class ExampleClass(object):
     def __init__(self) -> None:
         pass

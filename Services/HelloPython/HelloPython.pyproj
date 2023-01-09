@@ -25,6 +25,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="HelloPython.py" />
+    <Compile Include="setup.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UnitTests\test_HelloPython.py">
       <SubType>Code</SubType>
     </Compile>
