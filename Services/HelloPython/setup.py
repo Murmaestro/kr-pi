@@ -10,6 +10,6 @@ setup(name='HelloPython',
       py_modules=['HelloPython'],
       include_package_data=True,
       description='Examply Python Project',
-      #long_description=open('README.md').read(),
-      install_requires=[]
+      install_requires=[],
+      scripts=['configure_HelloPython']
 )

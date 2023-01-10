@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+
+BASE_DIR=$(dirname $(realpath $0))
+VENV_DIR=$BASE_DIR/.venv
+ACTIVATE=$VENV_DIR/bin/activate
+EXEC_NAME=/usr/bin/ExecHelloPython
+
+python -m venv $VENV_DIR
+source $ACTIVATE && pip install $BASE_DIR
+
+cat << EOF | sudo tee $EXEC_NAME
+#!/usr/bin/bash
+source $ACTIVATE && python $BASE_DIR/HelloPython.py
+EOF
+sudo chmod +x $EXEC_NAME
+
+cat << EOF | sudo tee /etc/systemd/system/HelloPython.service
+[Unit]
+Description=Test Python Service
+Wants=Network.target
+After=Network.target
+
+[Service]
+ExecStart=$EXEC_NAME
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl start HelloPython
