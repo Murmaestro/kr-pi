@@ -1,0 +1,3 @@
+C:\Users\ksmja\source\repos\kr-pi\Services\BudgetWebApp\obj\Debug\BudgetWebApp.njsproj.AssemblyReference.cache
+C:\Users\ksmja\source\repos\kr-pi\Services\BudgetWebApp\obj\Debug\BudgetWebApp.njsproj.CoreCompileInputs.cache
+C:\Users\ksmja\source\repos\kr-pi\Services\BudgetWebApp\bin\Microsoft.NodejsTools.WebRole.dll
